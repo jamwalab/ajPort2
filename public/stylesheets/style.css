@@ -64,9 +64,10 @@ nav {
   height: 100%;
 }
 
+
 nav ul a {
   font-size: 2.2vh;
-  padding: 1vh 1.5vw;
+  padding: 1vh 1vw;
 }
 
 nav ul a:hover {
@@ -268,3 +269,4 @@ nav ul a:hover {
 }
 
 /*--Service section ends--*/
+

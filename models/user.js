@@ -8,17 +8,9 @@ let User = mongoose.Schema
         username: 
         {
             type: String,
-            default: '',
             trim: true,
-            required: 'username is required'
-        },
-        
-        password: 
-        {
-            type: String,
-            trim: true,
-            required: 'password is required',
-            minlength: 4
+            required: 'username is required',
+            unique: true
         },
         
        email: 
@@ -27,13 +19,6 @@ let User = mongoose.Schema
             default: '',
             trim: true,
             required: 'email address is required'
-       },
-       displayName: 
-       {
-            type: String,
-            default: '',
-            trim: true,
-            required: 'Display Name is required'
        },
        created: 
        {
