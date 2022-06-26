@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&family=Roboto&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #F6F7F8;
+  --secondary: #FF1B54;
+  --tertiary: #2b2b2c;
+}
+
+body {
+  background: #2b2b2c;
+  font-family: 'Raleway', sans-serif;
+  color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100vh;
+}
+
+/*--COMMON--*/
+main {
+  margin: 0 2.5vw;
+  min-height: 92vh;
+}
+
+.nameHigh {
+  color: var(--secondary);
+  font-weight: bold;
+}
+
+.displayCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+@keyframes appearText {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/*--HEADER CSS CODE START--*/
+
+nav {
+  background-color: var(--tertiary);
+  box-shadow: none;
+  padding: 0 2vw;
+  height: 8vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.site-logo {
+  max-height: 8vh;
+  max-width: fit-content;
+}
+
+.site-logo img{
+  padding: 1vh 0 0 1vh;
+  height: 100%;
+}
+
+nav ul a {
+  font-size: 2.2vh;
+  padding: 1vh 1.5vw;
+}
+
+nav ul a:hover {
+  border-bottom: var(--primary) solid 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/*--HEADER CSS CODE END--*/
+
+/*--HOME START--*/
+
+.homePage {
+  padding: 25vh 0;
+}
+
+.homePage h2 {
+  font-size: 5vw; 
+}
+
+/*--HOME END--*/
+
+/*--ABOUT ME START--*/
+.aboutMeSection {
+  padding: 10vh 2vw;
+  font-size: 1.5vw;
+}
+
+.imageDescription {
+  display: flex;
+  max-height: 30vh;
+}
+
+.imageDescription div {
+  flex: 25%;
+  max-height: 30vh;
+}
+
+.imageDescription img {
+  max-height:100%; 
+  max-width:100%;
+  border-radius: 50%;
+}
+
+.imageDescription article {
+  flex: 60%;
+  align-self: center;
+  padding: 0 2vw;
+}
+
+.skillImages {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation-name: appearText;
+  animation-duration: 2s;
+}
+
+.eachSkillImage img {
+  display: flex;
+  width: fit-content;
+  min-height: 7vw;
+  max-height: 7vw;
+  align-items: center;
+  justify-content: center;
+}
+/*--ABOUT ME END--*/
+
+/*--PROJECT SECTION START--*/
+.projectSection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.work {
+  display: flex;
+  padding: 2vh 2vw; 
+  text-decoration: none;
+  flex: 35%;
+  justify-content: space-around;
+  animation-name: appearText;
+  animation-duration: 2s;
+}
+
+.img-preview {
+  position: relative;
+  border: 1px solid var(--secondary);
+  overflow: hidden;
+  max-height: 32vh;
+  box-shadow: 0 0 3px var(--primary);
+  text-align: center;
+}
+
+.img-preview img{
+  transition: all 2s;
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+  opacity: 30%;
+}
+
+.img-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--p-color);
+  color: var(--secondary);
+  
+}
+
+.img-text h3 {
+  font-size: 3vh;
+  padding: 1vh;
+  margin: 0;
+  font-weight: bold;
+}
+
+.img-text p {
+  font-size: 2vh;
+  margin: 0;
+}
+
+.img-preview img:hover {
+  transition: all 2s;
+  opacity: 80%;
+}
+
+.displayCenter .nameHigh {
+  margin-bottom: 3vh;
+}
+/*--PROJECT SECTION END--*/
+
+/*--Contact Section start--*/
+@keyframes upAndDown {
+  0% {transform: translateY(-0.5px) translateX(-0.5px);}
+  25% {transform: translateY(0px) translateX(0px);}
+  50% {transform: translateY(0.5px) translateX(0.5px);}
+  75% {transform: translateY(0px) translateX(0px);}
+  100% {transform: translateY(-0.5px) translateX(-0.5px);}
+}
+
+.myContact {
+  display: flex;
+}
+
+.contactSectionLeft, .contactSectionRight {
+  font-size: 2vh;
+  min-height: 50vh;
+  animation-name: appearText;
+  animation-duration: 2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.contactSectionLeft {
+  flex: 0 60%;
+}
+
+.contactSectionRight {
+  flex: 0 35%;
+}
+
+.contactDetails {
+  display: flex;
+  align-items: center;
+}
+
+
+.contactDetails img {
+  margin: 0 15px 0 0;
+  animation-name: upAndDown;
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+  max-width: 3vw;
+}
+
+.contactStatement {
+  text-align: center;
+  font-size: 2.5vh;
+}
+
+.contactSection a {
+  text-decoration: none;
+  color: var(--primary);
+}
+
+/*--Contact section Ends--*/
+
+/*--Service section start--*/
+.serviceList {
+  font-size: 2.8vh;
+}
+
+.serviceList li {
+  padding: 1.8vh;
+}
+
+/*--Service section ends--*/

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/images/siteLogoAJPng.png" />
+    <title>Abhishek Jamwal</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- material icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+</head>
+<body>
+    <%- include("./partials/header.ejs") %>
+
+    <main>
+      <% if (title == "Home"){ %>
+        <%- include("./partials/home.ejs") %>
+      <% } else if (title == "About") { %>
+        <%- include("./partials/about.ejs") %>
+      <% } else if (title == "Projects") { %>
+        <%- include("./partials/projects.ejs") %>
+      <% } else if (title == "Services") { %>
+        <%- include("./partials/services.ejs") %>
+      <% } else if (title == "Contact") { %>
+        <%- include("./partials/contacts.ejs") %>
+      <% } else { %>
+        <%- include("./partials/home.ejs") %>
+      <% } %>
+    </main>
+    <script src="/javascript/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
