@@ -1,0 +1,44 @@
+<Section class="contactSectionLeft">
+  <div class="row">
+    <form class="col s12" id="registerForm" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <p class="nameHigh"><%= title %>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          
+          <input id="name" type="text" class="validate" name="name" value="<%= contacts != ''? contacts.name : '' %>"
+          >
+          <label for="name">Name</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="contact" type="text" class="validate" name="contact" value="<%= contacts != '' ? contacts.contact : '' %>"
+          >
+          <label for="contact">Contact Number</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="email" type="text" class="validate" name="email" value="<%= contacts != '' ? contacts.email : '' %>"
+          >
+          <label for="email">Email</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s6">
+          <% if (title == "Update Contact") { %>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i>Edit</button>
+          <% } else { %>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i>Add</button>
+          <% } %>
+          
+        </div>
+        <div class="col s6">
+          <a class="waves-effect waves-light btn red" href="/bContact">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</article>

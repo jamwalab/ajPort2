@@ -10,7 +10,9 @@ let DB = require('../config/db');
 
 // create the User Model instance
 let userModel = require('../models/user');
+const busContact = require('../models/contact');
 let User = userModel.User; // alias
+//const busContact = contactModel.contactModel;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -63,7 +65,6 @@ router.get('/register', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-  console.log(req.body.username, req.body.password)
   passport.authenticate('local',
   (err, user, info) => {
       // server err?
@@ -77,7 +78,6 @@ router.post('/login', function(req, res, next) {
           req.flash('loginMessage', 'Authentication Error');
           return res.redirect('/login');
       }
-      console.log(user);
       req.login(user, (err) => {
           // server error?
           if(err)
@@ -109,7 +109,6 @@ router.post('/register', function(req, res, next) {
   });
 
   User.register(newUser, req.body.password, (err) => {
-      console.log(err);
       if(err)
       {
           console.log("Error: Inserting New User");
@@ -130,14 +129,6 @@ router.post('/register', function(req, res, next) {
       }
       else
       {
-          // if no error exists, then registration is successful
-
-          // redirect the user and authenticate them
-
-          /* TODO - Getting Ready to convert to API
-          res.json({success: true, msg: 'User Registered Successfully!'});
-          */
-
           return passport.authenticate('local')(req, res, () => {
               res.redirect('/')
           });
@@ -151,5 +142,118 @@ router.get('/logout', function(req, res, next) {
   res.redirect('/');
 });
 
+router.get('/bContact', function(req, res, next) {
+  if(!req.user) {
+    res.redirect('/login');
+  }
+  else {
+    busContact.find((err, contactInfo) => {
+      if (err) {
+        return console.error(err);
+      }
+      else {
+        res.render('index', {
+          title: 'Business Contact',
+          displayName: req.user ? req.user.username : '',
+          contacts: contactInfo
+        })
+      }
+    })
+  }
+  
+});
+
+router.get('/updateContact/:id', function(req, res, next) {
+  if(!req.user) {
+    res.redirect('/login');
+  }
+  else {
+    let contactId = req.params.id;
+    busContact.findById(contactId, (err, contactInfo) => {
+      res.render('index', { 
+        title: 'Update Contact', 
+        displayName: req.user ? req.user.username : '',
+        contacts: contactInfo
+      });
+    })
+    
+  }
+  
+});
+
+router.post('/updateContact/:id', function(req, res, next) {
+  if(!req.user) {
+    res.redirect('/login');
+  }
+  else {
+    let contactId = req.params.id;
+    let editContact = {
+      "name": req.body.name,
+      "contact": req.body.contact,
+      "email": req.body.email,
+      "user": req.user.username
+    };
+    busContact.updateOne({_id: contactId}, editContact, (err) => {
+      if (err) {
+        console.log(err);
+        res.end(err);
+      }
+      else{
+        res.redirect("/bContact")
+      }
+    })
+  }
+})
+
+router.get('/delete/:id', (req, res, next) => {
+  let contactId = req.params.id;
+  busContact.remove({_id: contactId}, (err) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    }
+    else{
+      res.redirect("/bContact")
+    }
+  })
+})
+
+router.get('/addContact', function(req, res, next) {
+  if(!req.user) {
+    res.redirect('/login');
+  }
+  else {
+    res.render('index', { 
+      title: 'Add Contact', 
+      displayName: req.user ? req.user.username : '',
+      contacts: ""
+    });
+  }
+  
+});
+
+router.post('/addContact', function(req, res, next) {
+  if(!req.user) {
+    res.redirect('/login');
+  }
+  else {
+    let newContact = busContact({
+      "name": req.body.name,
+      "contact": req.body.contact,
+      "email": req.body.email,
+      "user": req.user.username
+    });
+    busContact.create(newContact, (err, contact) => {
+      if (err) {
+        console.log(err);
+        res.end(err);
+      }
+      else{
+        res.redirect("/bContact")
+      }
+    })
+  }
+
+})
 
 module.exports = router;
